@@ -1,0 +1,74 @@
+﻿<Window x:Class="StudentList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentList"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="500">
+
+
+    <Window.Resources>
+        <local:ColorConverter x:Key="ColCon"></local:ColorConverter>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.75*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height=".5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <ListBox Name="lst" ItemsSource="{Binding Students}">
+
+            </ListBox>
+
+        </DockPanel>
+        <GroupBox Grid.Column="1" Grid.Row="1">
+            <StackPanel Background="{Binding Gender, Converter={StaticResource ColCon}}" DataContext="{Binding ElementName=lst, Path=SelectedItem}">
+                <StackPanel HorizontalAlignment="Left" Width="80" Orientation="Horizontal">
+                    <Border Width="60" Height="80" HorizontalAlignment="Left" Margin="20">
+                        <Image Source="{Binding Image}"></Image>
+                    </Border>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Top" Width="90" Margin="80,-113,0,0">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding Id}" Margin="10"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding Name}" Margin="10"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding Gender}" Margin="10"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom">
+
+                    <Button Width="100" Height="50" Content="Add"
+                Click="AddStudent"
+                Margin="5" RenderTransformOrigin="2.605,2.581"
+                ></Button>
+                    <Button Width="100" Height="50" Content="Delete"
+                Click="RemoveStudent"
+                Margin="5"
+                ></Button>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+
+
+
+
+
+
+
+    </Grid>
+
+
+
+
+
+
+
+</Window>
